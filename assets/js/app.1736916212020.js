@@ -314,7 +314,7 @@ Math.mod = function(value, n) {
             _callbacks ? _callbacks.push(callback) : callback()
         }, this.absolutePath = function(path) {
             if (window.AURA) return path;
-            let base = window.HYDRA_BASE_PATH ? ? _base;
+            let base = window.HYDRA_BASE_PATH ?? _base;
             if (void 0 === base) try {
                 if (document.getElementsByTagName("base").length > 0) {
                     var a = document.createElement("a");
@@ -323,7 +323,7 @@ Math.mod = function(value, n) {
             } catch (e) {
                 _base = null
             }
-            let pathname = base ? ? location.pathname;
+            let pathname = base ?? location.pathname;
             pathname.includes("/index.html") && (pathname = pathname.replace("/index.html", ""));
             let port = Number(location.port) > 1e3 ? `:${location.port}` : "";
             return path.includes("http") ? path : (location.protocol.length ? location.protocol + "//" : "") + (location.hostname + port + pathname + "/" + path).replace("//", "/")
@@ -1572,7 +1572,7 @@ Math.mod = function(value, n) {
         function AssetList(arr) {
             return arr.__proto__ = AssetList.prototype, arr
         }
-        this.__loaded = [], this.FLIPY = !0, this.CDN = window.HYDRA_ASSETS_CDN ? ? "", this.CORS = "anonymous", this.IMAGES = {}, this.VIDEOS = {}, this.AUDIOS = {}, this.SDF = {}, this.JSON = {
+        this.__loaded = [], this.FLIPY = !0, this.CDN = window.HYDRA_ASSETS_CDN ?? "", this.CORS = "anonymous", this.IMAGES = {}, this.VIDEOS = {}, this.AUDIOS = {}, this.SDF = {}, this.JSON = {
             push: function(prop, value) {
                 this[prop] = value, Object.defineProperty(this, prop, {
                     get: () => JSON.parse(JSON.stringify(value))
@@ -18838,7 +18838,7 @@ Class((function zUtils3D() {
         _renderOrder = v, _mesh && (_mesh.renderOrder = v)
     })), this.get("renderOrder", (_ => _renderOrder)), this.set("frustumCulled", (b => {
         _frustumCulled = b, _mesh && (_mesh.frustumCulled = b)
-    })), this.applyToShader = function(shader, castShadow = shader.mesh ? .castShadow ? ? !1) {
+    })), this.applyToShader = function(shader, castShadow = shader.mesh ? .castShadow ?? !1) {
         updateShader(shader, castShadow)
     }
 }), (_ => {
