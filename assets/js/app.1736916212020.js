@@ -53654,16 +53654,16 @@ Class(function GLUIStage() {
                               children: [],
                             },
                             {
-                              href: "https://activetheory.net",
+                              href: "https://originstheory.vercel.app/work",
                               _type: "a",
                               _innerText: "built  -> active theory",
                               refName: "unnamed",
                               children: [],
                             },
                             {
-                              href: "mailto:hello@activetheory.net",
+                              href: "mailto:hello@originstheory.com",
                               _type: "a",
-                              _innerText: "Contact -> hello@activetheory.net",
+                              _innerText: "Contact -> hello@originstheory.com",
                               refName: "unnamed",
                               children: [],
                             },
@@ -55195,7 +55195,7 @@ Class(function GLUIStage() {
               refName: "left",
               children: [
                 {
-                  href: "https://activetheory.net",
+                  href: "https://originstheory.vercel.app/",
                   _type: "a",
                   refName: "titleLink",
                   children: [
