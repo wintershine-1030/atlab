@@ -53656,7 +53656,7 @@ Class(function GLUIStage() {
                             {
                               href: "https://originstheory.vercel.app/work",
                               _type: "a",
-                              _innerText: "built  -> active theory",
+                              _innerText: "built  -> origins theory",
                               refName: "unnamed",
                               children: [],
                             },
@@ -54931,7 +54931,7 @@ Class(function GLUIStage() {
           {
             title: "Xperiments/Hub",
             subtitle:
-              "a collection of web experiments created by active theory",
+              "a collection of web experiments created by origins theory",
           },
           { title: "Explore Augmented Realities", subtitle: "WEB AR" },
           { title: "New interactive techniques", subtitle: "Webcam tracking" },
@@ -55265,7 +55265,7 @@ Class(function GLUIStage() {
                         },
                         {
                           _type: "div",
-                          _innerText: "by Active Theory",
+                          _innerText: "by Origins Theory",
                           refName: "subhead",
                           children: [],
                         },
