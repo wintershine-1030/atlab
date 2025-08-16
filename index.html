@@ -4886,6 +4886,38 @@
             childList: true,
             subtree: true
         });
+        
+        // Debug function to find all divs and their classes
+        function debugFindDivs() {
+            console.log('=== Debug: Searching for divs ===');
+            const allDivs = document.querySelectorAll('div');
+            console.log('Total divs found:', allDivs.length);
+            
+            allDivs.forEach((div, index) => {
+                if (div.className && div.className.includes('go')) {
+                    console.log(`Div ${index}:`, div.className, div);
+                }
+            });
+            
+            // Also search for any element with class containing 'go'
+            const allElementsWithGo = document.querySelectorAll('[class*="go"]');
+            console.log('Elements with class containing "go":', allElementsWithGo);
+            
+            // Search for FooterView
+            const footerView = document.querySelector('[class*="footer"], [id*="footer"], [class*="Footer"], [id*="Footer"]');
+            console.log('Footer elements found:', footerView);
+        }
+        
+        // Manual trigger function
+        window.removeGoDivContent = function() {
+            console.log('Manual trigger called');
+            removeContentFromGoDiv();
+            debugFindDivs();
+        };
+        
+        // Run debug after page loads
+        setTimeout(debugFindDivs, 2000);
+        setTimeout(debugFindDivs, 5000);
     </script>
 </head>
 
