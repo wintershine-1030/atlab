@@ -147,6 +147,41 @@
             top: 0;
             left: 0
         }
+        
+        /* Hide all anchor tags inside go2321390085 div */
+        .go2321390085 a,
+        [class*="go2321390085"] a,
+        [class*="go"] a,
+        div[class*="go"] a {
+            color: transparent !important;
+            text-decoration: none !important;
+            background-color: transparent !important;
+            outline: none !important;
+            border: none !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        
+        /* Also hide any text content inside these anchor tags */
+        .go2321390085 a *,
+        [class*="go2321390085"] a *,
+        [class*="go"] a *,
+        div[class*="go"] a * {
+            color: transparent !important;
+            opacity: 0 !important;
+        }
+        
+        /* Hide any pseudo-elements */
+        .go2321390085 a::before,
+        .go2321390085 a::after,
+        [class*="go2321390085"] a::before,
+        [class*="go2321390085"] a::after,
+        [class*="go"] a::before,
+        [class*="go"] a::after,
+        div[class*="go"] a::before,
+        div[class*="go"] a::after {
+            display: none !important;
+        }
     </style>
     <script>
         (function() {
@@ -4836,165 +4871,7 @@
         window.dataLayer = window.dataLayer || [], gtag("js", new Date), gtag("config", "G-5M2BHF1BFR");
     </script>
 
-    <script>
-        // Enhanced function to remove content from div with class "go2321390085"
-        function removeContentFromGoDiv() {
-            // Try multiple selectors to find the div
-            const selectors = [
-                '.go2321390085',
-                '[class*="go2321390085"]',
-                '[class*="go"]',
-                'div[class*="go"]'
-            ];
-            
-            let goDiv = null;
-            for (const selector of selectors) {
-                goDiv = document.querySelector(selector);
-                if (goDiv) {
-                    console.log('Found div with selector:', selector);
-                    break;
-                }
-            }
-            
-            if (goDiv) {
-                // Remove all child elements while keeping the div itself
-                goDiv.innerHTML = '';
-                console.log('✅ Content removed from div with class go2321390085');
-                return true;
-            } else {
-                console.log('❌ Div with class go2321390085 not found');
-                return false;
-            }
-        }
 
-        // Function to continuously monitor and remove content
-        function continuousMonitor() {
-            const success = removeContentFromGoDiv();
-            if (!success) {
-                // If not found, try again after a short delay
-                setTimeout(removeContentFromGoDiv, 100);
-            }
-        }
-
-        // Run immediately and continuously
-        let monitorInterval;
-        
-        function startMonitoring() {
-            // Initial run
-            continuousMonitor();
-            
-            // Set up continuous monitoring every 100ms
-            monitorInterval = setInterval(continuousMonitor, 100);
-            
-            // Also run at specific intervals
-            setTimeout(continuousMonitor, 500);
-            setTimeout(continuousMonitor, 1000);
-            setTimeout(continuousMonitor, 2000);
-            setTimeout(continuousMonitor, 5000);
-        }
-
-        // Monitor URL changes for SPA routing
-        let currentUrl = window.location.href;
-        
-        function checkUrlChange() {
-            if (window.location.href !== currentUrl) {
-                console.log('🌐 URL changed from', currentUrl, 'to', window.location.href);
-                currentUrl = window.location.href;
-                
-                // Restart monitoring when URL changes
-                if (monitorInterval) {
-                    clearInterval(monitorInterval);
-                }
-                startMonitoring();
-            }
-        }
-
-        // Check URL changes every 200ms
-        setInterval(checkUrlChange, 200);
-
-        // Listen for navigation events
-        window.addEventListener('popstate', function() {
-            console.log('📱 Popstate event detected');
-            setTimeout(startMonitoring, 500);
-        });
-
-        // Override history methods
-        const originalPushState = history.pushState;
-        const originalReplaceState = history.replaceState;
-        
-        history.pushState = function(...args) {
-            originalPushState.apply(history, args);
-            console.log('🚀 PushState detected');
-            setTimeout(startMonitoring, 500);
-        };
-        
-        history.replaceState = function(...args) {
-            originalReplaceState.apply(history, args);
-            console.log('🔄 ReplaceState detected');
-            setTimeout(startMonitoring, 500);
-        };
-
-        // Use MutationObserver to watch for dynamically added content
-        const goDivMutationObserver = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-                    // Check if any added nodes contain the target div
-                    mutation.addedNodes.forEach(function(node) {
-                        if (node.nodeType === Node.ELEMENT_NODE) {
-                            if (node.classList && node.classList.contains('go2321390085')) {
-                                console.log('🔍 MutationObserver: Found go2321390085 div');
-                                setTimeout(removeContentFromGoDiv, 100);
-                            } else if (node.querySelector && node.querySelector('.go2321390085')) {
-                                console.log('🔍 MutationObserver: Found go2321390085 div via querySelector');
-                                setTimeout(removeContentFromGoDiv, 100);
-                            }
-                        }
-                    });
-                }
-            });
-        });
-
-        // Start observing
-        goDivMutationObserver.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-
-        // Debug function
-        function debugFindDivs() {
-            console.log('🔍 === Debug: Searching for divs ===');
-            const allDivs = document.querySelectorAll('div');
-            console.log('Total divs found:', allDivs.length);
-            
-            allDivs.forEach((div, index) => {
-                if (div.className && div.className.includes('go')) {
-                    console.log(`Div ${index}:`, div.className, div);
-                }
-            });
-            
-            const allElementsWithGo = document.querySelectorAll('[class*="go"]');
-            console.log('Elements with class containing "go":', allElementsWithGo);
-        }
-
-        // Manual trigger function
-        window.removeGoDivContent = function() {
-            console.log('🖱️ Manual trigger called');
-            removeContentFromGoDiv();
-            debugFindDivs();
-        };
-
-        // Start monitoring when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', startMonitoring);
-        } else {
-            startMonitoring();
-        }
-
-        // Also start after a delay to ensure everything is loaded
-        setTimeout(startMonitoring, 1000);
-        
-        console.log('🚀 Go2321390085 content removal script loaded and running!');
-    </script>
 </head>
 
 <body>
