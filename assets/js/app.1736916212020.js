@@ -53654,7 +53654,7 @@ Class(function GLUIStage() {
                               children: [],
                             },
                             {
-                              href: "https://originstheory.vercel.app/work",
+                              href: "https://originstheory.vercel.app",
                               _type: "a",
                               _innerText: "built  -> origins theory",
                               refName: "unnamed",
