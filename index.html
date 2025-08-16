@@ -4836,6 +4836,57 @@
         }
         window.dataLayer = window.dataLayer || [], gtag("js", new Date), gtag("config", "G-5M2BHF1BFR");
     </script>
+    
+    <script>
+        // Function to remove content from div with class "go2321390085"
+        function removeContentFromGoDiv() {
+            // Find the div with class "go2321390085"
+            const goDiv = document.querySelector('.go2321390085');
+            
+            if (goDiv) {
+                // Remove all child elements while keeping the div itself
+                goDiv.innerHTML = '';
+                console.log('Content removed from div with class go2321390085');
+            } else {
+                console.log('Div with class go2321390085 not found');
+            }
+        }
+
+        // Run when DOM is loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', removeContentFromGoDiv);
+        } else {
+            removeContentFromGoDiv();
+        }
+        
+        // Also run after a delay to catch dynamically loaded content
+        setTimeout(removeContentFromGoDiv, 1000);
+        setTimeout(removeContentFromGoDiv, 3000);
+        
+        // Use MutationObserver to watch for dynamically added content
+        const goDivObserver = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                    // Check if any added nodes contain the target div
+                    mutation.addedNodes.forEach(function(node) {
+                        if (node.nodeType === Node.ELEMENT_NODE) {
+                            if (node.classList && node.classList.contains('go2321390085')) {
+                                removeContentFromGoDiv();
+                            } else if (node.querySelector && node.querySelector('.go2321390085')) {
+                                removeContentFromGoDiv();
+                            }
+                        }
+                    });
+                }
+            });
+        });
+        
+        // Start observing
+        goDivObserver.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    </script>
 </head>
 
 <body>
