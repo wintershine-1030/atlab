@@ -4915,6 +4915,61 @@
             debugFindDivs();
         };
         
+        // Monitor URL changes for SPA routing
+        let currentUrl = window.location.href;
+        
+        function checkUrlChange() {
+            if (window.location.href !== currentUrl) {
+                console.log('URL changed from', currentUrl, 'to', window.location.href);
+                currentUrl = window.location.href;
+                
+                // Wait a bit for new content to load, then remove content
+                setTimeout(() => {
+                    removeContentFromGoDiv();
+                    debugFindDivs();
+                }, 1000);
+                
+                setTimeout(() => {
+                    removeContentFromGoDiv();
+                    debugFindDivs();
+                }, 3000);
+            }
+        }
+        
+        // Check URL changes every 500ms
+        setInterval(checkUrlChange, 500);
+        
+        // Also listen for popstate events (back/forward buttons)
+        window.addEventListener('popstate', function() {
+            console.log('Popstate event detected');
+            setTimeout(() => {
+                removeContentFromGoDiv();
+                debugFindDivs();
+            }, 1000);
+        });
+        
+        // Listen for pushstate/replacestate (programmatic navigation)
+        const originalPushState = history.pushState;
+        const originalReplaceState = history.replaceState;
+        
+        history.pushState = function(...args) {
+            originalPushState.apply(history, args);
+            console.log('PushState detected');
+            setTimeout(() => {
+                removeContentFromGoDiv();
+                debugFindDivs();
+            }, 1000);
+        };
+        
+        history.replaceState = function(...args) {
+            originalReplaceState.apply(history, args);
+            console.log('ReplaceState detected');
+            setTimeout(() => {
+                removeContentFromGoDiv();
+                debugFindDivs();
+            }, 1000);
+        };
+        
         // Run debug after page loads
         setTimeout(debugFindDivs, 2000);
         setTimeout(debugFindDivs, 5000);
